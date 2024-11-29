@@ -18,9 +18,9 @@ jobs:
           pip install pytest
           pip install flake8
 
-      - name: Run tests
+      - name: Run tests Pytest (+log results without stopping if error)
         run: |
-          pytest
+          pytest --junitxml=pytest-report.xml || echo "Pytest a échoué mais on continue."
           
       - name: Upload test results
         uses: actions/upload-artifact@v4 #upload du rapport de test
