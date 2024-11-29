@@ -1,32 +1,32 @@
 name: Workflow ctrl Python avec pytest et & flake8 
 on: push
 jobs:
-  qa:
+  qa: #Tache1 (=sous job?)
     name: Check tests avec flak8 et pytest
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout on master
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@master
+      - name: Checkout on master#ctrl depot
+        uses: actions/checkout@v3 #uses = workflow déjà existant sur Github et appelable : ici : copie notre repo sur serveur GitHub où tourne workflow
+      
+      - name: Set up Python #install Python sur VM (Github Server)
+        uses: actions/setup-python@master #uses
         with:
           python-version: "3.x"
 
-      - name: Install pytest and flake8
-        run: |
+      - name: Install pytest and flake8 #install outils de ctrl
+        run: | #pipe | sert pour commandes multiples
           pip install pytest
           pip install flake8
 
-      - name: Run tests Pytest (+log results without stopping if error)
+      - name: Run tests Pytest (+log results without stopping if error)#step test Pytest
         run: |
           pytest --junitxml=pytest-report.xml || echo "Pytest a échoué mais on continue."
-          
+         
       - name: Upload test results
         uses: actions/upload-artifact@v4 #upload du rapport de test
         with:
           name: pytest-report
           path: pytest-report.xml
 
-      - name: Run flake8
-        uses: py-actions/flake8@v2
+      - name: Run flake8 #test flake8
+        uses: py-actions/flake8@v2 #uses
