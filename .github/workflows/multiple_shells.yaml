@@ -7,8 +7,18 @@ on:
     types: [closed, assigned, opened, reopened]
 jobs:
   run-shell-command:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-20.04]
     steps:
+      - name: echo a string
+        run: echoo "Hello world"
+      - name: multiline script
+        run: |
+          python3 -V
+          touch my_file_with_workflow.py
+          ls -l
       - name: python commands
         run: |
           import platform
