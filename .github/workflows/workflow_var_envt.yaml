@@ -14,8 +14,7 @@ jobs:
       - name: "Step_Dites Salut Mona nous sommes lundi"
         run: |
           echo "$Greeting $First_Name. Nous sommes $DAY_OF_WEEK!"
-          #echo "Var repo1: ${{VAR_ABO}}"
-          echo "Var repo2: ${VAR_ABO}"
+          echo "Var repo1: ${{VAR_ABO}}"
           echo "Secret repo: ${{secrets.SECRET_ABO2}}"
           echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
         env:
