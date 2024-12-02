@@ -1,3 +1,5 @@
+name: nettoyage
+on: workflow_dispatch
 jobs:
   delete_runs:
     runs-on: ubuntu-latest
